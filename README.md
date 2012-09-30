@@ -11,7 +11,7 @@ Download the set of scripts, ensure you have a working Python installation (I us
 
 ```bash
 python inventory --help
-```bash
+```
 
 for information. 
 
@@ -23,11 +23,11 @@ There are a number of features and options. Most of them are self-described. You
 
 ```bash
 python inventory add
-```bash
+```
 
 to begin adding items to your database. It is important to note that some of the commands require
-input prefixed by the barcode type (only EAN_13 is fully supported at the moment), while others require
-just teh barcode iteself. This is ebcause some commnads are designed to receive input piped from zbarcam,
+input prefixed by the barcode type (only EAN-13 is fully supported at the moment), while others require
+just the barcode iteself. This is because some commands are designed to receive input piped from zbarcam,
 while others are designed to receive manual input. For example
 
 	./inventory add
@@ -62,6 +62,6 @@ Interfacing with Cronometer
 --------------------------
 
 Inventory also checks your Cronometer database for UPC codes before turning to the internet search (which is often unreliable).
-First, ensure you have the Cronometer foods folder specified in inventory_grabcronometer.py (it is the global variable.
+First, ensure you have the Cronometer foods folder specified in inventory_grabcronometer.py (it is the global variable).
 Then, when you add custom items into Cronometer, just put the UPC in the Comments section. Inventory will automatically detect
 it!
