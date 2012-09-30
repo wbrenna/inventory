@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+
+import inventory_remove
+import inventory_add
+import inventory_modifyexpiry
+import inventory_daily
+import inventory_printout
+import inventory_addname
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Read and store product information from upc codes.')
+parser.add_argument('action', action='store', help='The action we want to perform; can be one of: add, addname, modifyexpiry, remove, printout, or daily. Select add to begin!')
+
+args = parser.parse_args()
+#print args.accumulate(args.integers)
+print "You have selected \"" + args.action + "\"."
+
+{'add' : inventory_add.main, 'addname' : inventory_addname.main, 'modifyexpiry' : inventory_modifyexpiry.main, 'daily' : inventory_daily.main, 'remove' : inventory_remove.main, 'printout' : inventory_printout.main}[args.action]()
+
