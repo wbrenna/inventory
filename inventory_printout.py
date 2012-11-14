@@ -12,7 +12,10 @@ def main():
 
 #We just check each of the elements
 	for upc in inventoryarr.keys():
-		itemname = upc + ": " + inventoryarr[upc][0][1] 
+		if inventoryarr[upc][0][1] is not None:
+			itemname = upc + ": " + inventoryarr[upc][0][1] 
+		else:
+			itemname = upc + "Unknown"
 		length = inventoryarr[upc][0][0]
 		for key in inventoryarr[upc][1:]:
 			buydate = key

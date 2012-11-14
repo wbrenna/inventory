@@ -17,7 +17,7 @@ def cronometer(upc):
 		food =  foodroot.findall('comments')[0].text
 
 		if food is not None:
-			print "Found a UPC in the comment."
+			#print "Found a UPC in the comment."
 			if upc == foodroot.findall('comments')[0].text:
 				print foodroot.attrib['name'] + ", UID = " +  foodroot.attrib['uid']
 				return([foodroot.attrib['name'],foodroot.attrib['uid']])

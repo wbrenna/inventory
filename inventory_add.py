@@ -49,7 +49,7 @@ def main():
 
 			if bcodeinfo['valid'] == "false":
 				print "This item wasn't in the online database. Please submit it at upcdatabase.org! It was not entered in your inventory."
-				break
+				continue
 
 			if bcodeinfo['description']:
 				bcodeinfo['itemname'] += bcodeinfo['description']

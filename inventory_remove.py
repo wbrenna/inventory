@@ -20,8 +20,8 @@ def main():
 		try:
 			tmp = inventoryarr[upc]
 		except:
-			print "That item does not yet exist in this database."
-			break
+			print "The item " + upc + " does not yet exist in this database."
+			continue
 
 		try:
 			print upc + ": \"" + inventoryarr[upc][0][1] + "\", added on " + inventoryarr[upc].pop(1).strftime("%A, %d %B %Y") + " was successfully deleted."
