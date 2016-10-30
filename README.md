@@ -64,3 +64,9 @@ Interfacing with Cronometer
 Inventory also checks your [Cronometer](http://sourceforge.net/projects/cronometer/) database for UPC codes before turning to the internet search (which is often unreliable).
 First, ensure you have the Cronometer foods folder specified in inventory_grabcronometer.py (it is a global variable).
 Then, when you add custom items into Cronometer, just put the UPC in the Comments section. Inventory will automatically scan for Cronometer UPCs before turning to the web.
+
+
+TODO
+=========
+
+Integrate with webserver to display printout status
