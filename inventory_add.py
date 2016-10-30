@@ -30,7 +30,7 @@ def main():
 		if inventoryarr.has_key(upc):
 			inventoryarr[upc].append(itemdata)
 		else:
-			print "This is a brand new item. Searching Cronometer..."
+			print "UPC" + upc + " is a brand new item. Searching Cronometer..." 
 			arr = inventory_grabcronometer.cronometer(upc)
 			if arr != 0:
 				print "Found in Cronometer! Item successfully entered."
@@ -39,9 +39,10 @@ def main():
 				inventoryarr[upc] = [arr2]
 				inventoryarr[upc].append(itemdata)
 				continue
+                        print "Not found in Cronometer. Searching UPC Database."
 
 			params = {'upc' : upc }
-			req = urllib2.Request("http://www.upcdatabase.org/api/json/edaa1cf82ef672ed5dbaa3d0ac2d604c/%(upc)s" % params)
+			req = urllib2.Request("http://api.upcdatabase.org/json/edaa1cf82ef672ed5dbaa3d0ac2d604c/%(upc)s" % params)
 			opener = urllib2.build_opener()
 			f = opener.open(req)
 			bcodeinfo = simplejson.load(f)

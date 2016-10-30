@@ -5,7 +5,7 @@ import os
 from xml.etree import ElementTree
 import glob
 
-CRONOMETER_FOLDER = "/home/wilson/.cronometer/foods/"
+CRONOMETER_FOLDER = "../cronometer/foods/"
 
 def cronometer(upc):
 	foodxml = ''
