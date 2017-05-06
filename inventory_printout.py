@@ -6,7 +6,11 @@ import smtplib
 import string
 
 def main():
-	file = open('inventory.inv', 'r')
+	try:
+		file = open('inventory.inv', 'r')
+	except:
+		print "Issue opening inventory.inv. Make sure this file is in the current directory. If it is not, add an item to create it."
+		return
 	inventoryarr = pickle.load(file)
 	file.close()
 

@@ -25,7 +25,8 @@ def main():
 		if not linetmp:
 			break
 		line = linetmp.rstrip()
-		upc = line[7:]
+		#upc = line[7:]
+		upc = line
 		itemdata = datetime.date.today()
 		if inventoryarr.has_key(upc):
 			inventoryarr[upc].append(itemdata)
