@@ -8,7 +8,7 @@ import urllib2
 import simplejson
 import inventory_grabcronometer
 
-DEFAULT_EXPIRY_TIME = 100
+DEFAULT_EXPIRY_TIME = 600
 #The default expiry time for items, in days.
 
 def main():
@@ -35,28 +35,17 @@ def main():
 			arr = inventory_grabcronometer.cronometer(upc)
 			if arr != 0:
 				print "Found in Cronometer! Item successfully entered."
-				#inventoryarr[upc] = [arr] 
-				arr2 = [DEFAULT_EXPIRY_TIME,arr[0],arr[1]]
+                                specified_expiry_time = int(arr[0])
+                                if specified_expiry_time < 600 and specified_expiry_time > 0:
+                                    arr2 = [specified_expiry_time,arr[1],arr[2]]
+                                else:
+                                    arr2 = [DEFAULT_EXPIRY_TIME,arr[1],arr[2]]
 				inventoryarr[upc] = [arr2]
 				inventoryarr[upc].append(itemdata)
 				continue
-                        print "Not found in Cronometer. Searching UPC Database."
-
-			params = {'upc' : upc }
-			req = urllib2.Request("http://api.upcdatabase.org/json/edaa1cf82ef672ed5dbaa3d0ac2d604c/%(upc)s" % params)
-			opener = urllib2.build_opener()
-			f = opener.open(req)
-			bcodeinfo = simplejson.load(f)
-			print bcodeinfo
-
-			if bcodeinfo['valid'] == "false":
-				print "This item wasn't in the online database. Please submit it at upcdatabase.org! It was not entered in your inventory."
-				continue
-
-			if bcodeinfo['description']:
-				bcodeinfo['itemname'] += bcodeinfo['description']
-			inventoryarr[upc] = [[DEFAULT_EXPIRY_TIME,bcodeinfo['itemname']]]
-			inventoryarr[upc].append(itemdata)
+                        #print "Not found in Cronometer. Searching UPC Database."
+                        print "UPC " + upc + " was not found in Cronometer. Please enter it."
+                        continue
 
 		print "Successfully entered upc " + upc
 

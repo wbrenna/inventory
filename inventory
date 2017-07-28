@@ -8,6 +8,8 @@ import inventory_daily
 import inventory_printout
 import inventory_addname
 import inventory_xmlout
+import inventory_grabcronometer
+import inventory_grabrecipes
 
 import argparse
 
@@ -18,5 +20,5 @@ args = parser.parse_args()
 #print args.accumulate(args.integers)
 print "You have selected \"" + args.action + "\"."
 
-{'add' : inventory_add.main, 'addmanually' : inventory_addname.main, 'modifyexpiry' : inventory_modifyexpiry.main, 'modifyname' : inventory_modifyname.main, 'daily' : inventory_daily.main, 'remove' : inventory_remove.main, 'printout' : inventory_printout.main, 'xmlout' : inventory_xmlout.main}[args.action]()
+{'add' : inventory_add.main, 'addmanually' : inventory_addname.main, 'grabcronometer' : inventory_grabcronometer.main, 'grabrecipes' : inventory_grabrecipes.main, 'modifyexpiry' : inventory_modifyexpiry.main, 'modifyname' : inventory_modifyname.main, 'daily' : inventory_daily.main, 'remove' : inventory_remove.main, 'printout' : inventory_printout.main, 'xmlout' : inventory_xmlout.main}[args.action]()
 
