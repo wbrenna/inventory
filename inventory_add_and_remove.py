@@ -56,24 +56,33 @@ def main():
 		line = lineprev.rstrip()
 		upc = line
 		itemdata = datetime.date.today()
-		if inventoryarr.has_key(upc):
-			inventoryarr[upc].append(itemdata)
-		else:
-			print "UPC" + upc + " is a brand new item. Searching Cronometer..." 
-			arr = inventory_grabcronometer.cronometer(upc)
-			if arr != 0:
-				print "Found in Cronometer! Item successfully entered."
-				#inventoryarr[upc] = [arr] 
-                                specified_expiry_time = int(arr[0])
-                                if specified_expiry_time < 100 and specified_expiry_time > 0:
-                                    arr2 = [specified_expiry_time,arr[1],arr[2]]
-                                else:
-                                    arr2 = [DEFAULT_EXPIRY_TIME,arr[1],arr[2]]
-				inventoryarr[upc] = [arr2]
-				inventoryarr[upc].append(itemdata)
-				continue
-                        print "Not found in Cronometer. Please add there."
-                        continue
+                if removeItem == False:
+                        if inventoryarr.has_key(upc):
+                                inventoryarr[upc].append(itemdata)
+                        else:
+                                print "UPC" + upc + " is a brand new item. Searching Cronometer..." 
+                                arr = inventory_grabcronometer.cronometer(upc)
+                                if arr != 0:
+                                        print "Found in Cronometer! Item successfully entered."
+                                        #inventoryarr[upc] = [arr] 
+                                        specified_expiry_time = int(arr[0])
+                                        if specified_expiry_time < 100 and specified_expiry_time > 0:
+                                            arr2 = [specified_expiry_time,arr[1],arr[2]]
+                                        else:
+                                            arr2 = [DEFAULT_EXPIRY_TIME,arr[1],arr[2]]
+                                        inventoryarr[upc] = [arr2]
+                                        inventoryarr[upc].append(itemdata)
+                                        continue
+                                print "Not found in Cronometer. Please add there."
+                                continue
+                else:
+                        try:
+                            tmp = inventoryarr[upc]
+                            print "Item added on " + tmp.pop(1).strftime("%A, %d %B %Y") + " was successfully deleted."
+                        except:
+                            print "Item to be removed did not exist in the database."
+
+                        linetmp = ""
 
 		print "Successfully entered upc " + upc
                 if lastRun = True:
