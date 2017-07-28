@@ -34,18 +34,6 @@ while others are designed to receive manual input. For example
 
 requires input such as
 
-	EAN-13:0068100084245
-
-Therefore, it is best to run these types of commands directly from zbarcam, as in
-
-	zbarcam | inventory add
-
-Commands such as
-
-	./inventory modifyexpiry
-
-require input like
-
 	0068100084245
 
 The "modifyexpiry" allows you to enter a specific product EAN-13 manually and customize its expiry date.
@@ -61,7 +49,7 @@ as well as ensure that your system is a working mailserver.
 Interfacing with Cronometer
 --------------------------
 
-Inventory also checks your [Cronometer](http://sourceforge.net/projects/cronometer/) database for UPC codes before turning to the internet search (which is often unreliable).
+Inventory also checks your [Cronometer](http://sourceforge.net/projects/cronometer/) database for UPC codes.
 First, ensure you have the Cronometer foods folder specified in inventory_grabcronometer.py (it is a global variable).
 Then, when you add custom items into Cronometer, just put the UPC in the Comments section. Inventory will automatically scan for Cronometer UPCs before turning to the web.
 
