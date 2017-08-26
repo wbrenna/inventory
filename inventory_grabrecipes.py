@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 import pickle
-import sys
+#import sys
+import os.path
+from subprocess import call
 from xmlrpclib import ServerProxy, Error
 import datetime
 import urllib2
@@ -18,6 +20,7 @@ def main():
 	except IOError:
 		inventoryarr = {}
 
+	call("./concatenate_cronometer.sh", shell=True)
         recipearr = inventory_grabcronometer.cronometer_recipes(inventoryarr) #construct recipes with at least one item from inventoryarr
         #print out the details of the top few recipes
         if recipearr != []:

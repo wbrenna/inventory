@@ -29,7 +29,9 @@ def cronometer_recipes(inventoryarr):
                 for inventoryarritem in inventoryarr[inventoryarritems][1:]:
                         #print inventoryarritem
                         daydiff = datetime.date.today() - inventoryarritem
-                        expiryindextmp = (daydiff.days)/expirylength #numdays in cupboard
+                        expiryindextmp = float((daydiff.days))/expirylength #numdays in cupboard
+			#print daydiff
+			#print float(daydiff.days)
                         if expiryindextmp > 1:
                                 expiryindextmp = 1
                         if expiryindextmp > expiryindex:
@@ -48,13 +50,14 @@ def cronometer_recipes(inventoryarr):
                         if ingredient.attrib['food'] in foodlist.keys():
 				ingmatch = ingmatch + 1
 				expirymetric = expirymetric + foodlist[ingredient.attrib['food']]
+				#print(foodlist[ingredient.attrib['food']])
 		if ingmatch > 0:
 #add the recipe to our list, and determine whether any of the <serving ... food="######" source="My Foods"
 #exist in the recipe, if so, add them as an element of the recipe-indexed list.
 			expirymetric = float(expirymetric)/ingmatch
-			validrecipelist.append((recipe, float((float(ingmatch)/ingcounter)*(expirymetric))))
+			validrecipelist.append((recipe, float(float(1-float(1/float(ingmatch+0.3))+float(1/float(ingcounter+0.3)))*(float(expirymetric+2)/3.0))))
 			#print('Recipe found, with metric ' + str(expirymetric) + '; ingmatch is ' + str(ingmatch))
-        return(sorted(validrecipelist, key = lambda recipedata: recipedata[1]))
+        return(sorted(validrecipelist, key = lambda recipedata: recipedata[1], reverse=True))
 
 
 

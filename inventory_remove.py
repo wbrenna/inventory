@@ -10,13 +10,15 @@ def main():
 	inventoryarr = pickle.load(file)
 	file.close()
 
+	shoppinglistfile = open('shoppinglist.txt', 'a')
 	while True: 
 		print "Scan the UPC of the item you'd like to remove."
 		linetmp = sys.stdin.readline()
 		if not linetmp:
 			break
 		line = linetmp.rstrip()
-		upc = line[7:]
+		#upc = line[7:]
+                upc = line
 		try:
 			tmp = inventoryarr[upc]
 		except:
@@ -25,8 +27,13 @@ def main():
 
 		try:
 			print upc + ": \"" + inventoryarr[upc][0][1] + "\", added on " + inventoryarr[upc].pop(1).strftime("%A, %d %B %Y") + " was successfully deleted."
+			shoppinglistfile.write(inventoryarr[upc][0][1] + ", " + upc)
 		except:
-			print "The item exists, but you currently have zero stock."
+			print "The item exists, but you currently have zero stock. Removing record from inventory entirely."
+                        #inventoryarr[upc].pop(0)
+                        inventoryarr.pop(upc,None)
+
+	shoppinglistfile.close()
 
 	print "Remaining items:"
 	print inventoryarr

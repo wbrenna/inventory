@@ -25,7 +25,7 @@ def main():
 			buydate = key
 			newdate = buydate + datetime.timedelta(days=length)
 			print itemname
-			print "Expiring on " + newdate.strftime("%A, %d %B %Y")
+			print "Expiring on " + newdate.strftime("%Y-%m-%d, a %A")
 			print "\n"
 
 
