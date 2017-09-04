@@ -27,7 +27,7 @@ def main():
 
 		try:
 			print upc + ": \"" + inventoryarr[upc][0][1] + "\", added on " + inventoryarr[upc].pop(1).strftime("%A, %d %B %Y") + " was successfully deleted."
-			shoppinglistfile.write(inventoryarr[upc][0][1] + ", " + upc)
+			shoppinglistfile.write(inventoryarr[upc][0][1] + ", " + upc + "\n")
 		except:
 			print "The item exists, but you currently have zero stock. Removing record from inventory entirely."
                         #inventoryarr[upc].pop(0)
