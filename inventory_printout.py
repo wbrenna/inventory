@@ -24,10 +24,7 @@ def main():
 		for key in inventoryarr[upc][1:]:
 			buydate = key
 			newdate = buydate + datetime.timedelta(days=length)
-			print itemname
-			print "Expiring on " + newdate.strftime("%Y-%m-%d, a %A")
-			print "\n"
-
+			print itemname + ", expiring on " +  newdate.strftime("%Y-%m-%d, a %A")
 
 	file = open('inventory.inv', 'w')
 	pickle.dump(inventoryarr,file)

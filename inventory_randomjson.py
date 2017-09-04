@@ -26,8 +26,8 @@ def main():
             jsonfile.close()
 
         #Generate a random number between 0 and 105 to narrow down the BBC recipes
-        bbcchunk = int(106*random.random())
-        bbcindex = int(100*random.random())
+        bbcchunk = int(105*random.random())
+        bbcindex = int(99*random.random())
 
         bestrecipe = 0
         ingmatches = 0
@@ -48,7 +48,7 @@ def main():
 
         for searchcounter in range(0,30):
             recipeindex = (bbcindex + searchcounter) % 100
-            jsonrecipe = jsondata[bbcchunk*106 + recipeindex]
+            jsonrecipe = jsondata[bbcchunk*100 + recipeindex]
             jsonings = [item.encode('ascii', 'xmlcharrefreplace') for item in jsonrecipe["ingredients"]]
             jsonings = [re.split(', |,| ', value) for value in jsonings] #split on comma or spaces
             jsonings = [item for items in jsonings for item in items] #flatten
@@ -63,10 +63,12 @@ def main():
                 ingmatches = recipeingmatches
                 bestscore = recipescore
             
-        recipetitlestripped = re.sub('[^A-Za-z]+', '', recipetitle)
-        print "Here is a semi-random recipe you can try to make: it has a score of " + str(bestscore) + ". It's called \"" + bestrecipe + "\"."
-        img = qrcode.make('https://wbrenna.ca/wilson/recipes/bbcrecipesxml-' + str(bbcchunk) + '.xml#' + recipetitlestripped)
+        recipetitlestripped = re.sub('[^A-Za-z]+', '', bestrecipe)
+	url = 'https://wbrenna.ca/wilson/recipes/bbcrecipesxml-' + str(bbcchunk) + '.xml#' + recipetitlestripped
+        print "Here is a semi-random recipe you can try to make: it has a score of " + str(bestscore) + ". It's called \"" + bestrecipe + "\". See it at " + url + "."
+        img = qrcode.make(url)
         img.show()
+	img.save('qrcode.png')
 
 if __name__ == "__main__":
 	main()
